@@ -31,8 +31,6 @@ class Mailbox
   def conversations(options = {})
     conv = Conversation.participant(@messageable)
 
-    Dbug.dump "options = #{options[:mailbox_name]}"
-
     if options[:mailbox_name].present?
       conv = Conversation.custom(@messageable, options[:mailbox_name])
     end
