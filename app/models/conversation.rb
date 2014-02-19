@@ -15,7 +15,7 @@ class Conversation < ActiveRecord::Base
     joins(:receipts).merge(Receipt.recipient(participant))
   }
   scope :custom, lambda {|participant, mailbox_name|
-    participant(participant).merge(Receipt.custom(mailbox_name))
+    participant(participant).merge(Receipt.custom(mailbox_name).not_trash)
   }
   scope :inbox, lambda {|participant|
     participant(participant).merge(Receipt.inbox.not_trash)
