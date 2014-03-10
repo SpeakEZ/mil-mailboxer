@@ -2,7 +2,7 @@ class Notification < ActiveRecord::Base
   attr_accessor :recipients
   attr_accessible :body, :subject, :global, :expires, :urgent
 
-  belongs_to :sender, :polymorphic => :true
+  belongs_to :sender, :polymorphic => :true, with_deleted: true
   belongs_to :notified_object, :polymorphic => :true
   validates_presence_of :subject, :body
   has_many :receipts, :dependent => :destroy
